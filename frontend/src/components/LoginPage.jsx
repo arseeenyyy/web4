@@ -45,7 +45,7 @@ const Login = () => {
             password: password,
         };
         try {
-            const response = await fetch('http://localhost:8080/web4/register', {
+            const response = await fetch('http://localhost:8080/web4/login', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json', 
