@@ -15,7 +15,7 @@ const validateForm = (login, password) => {
     return errors;
 };
 
-const Login = (props) => {
+const Login = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState(''); 
@@ -28,7 +28,7 @@ const Login = (props) => {
         setLoginError('');
         setPasswordError('');
         setErrorMessage('');
-        
+
         const errors = validateForm(login, password);
         if (errors.login) {
             setLoginError(errors.login);
