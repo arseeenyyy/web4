@@ -14,6 +14,7 @@ import com.github.arseeenyyy.models.entities.UserEntity;
 import com.github.arseeenyyy.models.request.UserRequest;
 import com.github.arseeenyyy.models.response.MessageResponse;
 import com.github.arseeenyyy.services.UserService;
+
 @RestController
 @CrossOrigin
 @RequestMapping
