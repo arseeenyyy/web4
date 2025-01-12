@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 const validateForm = (login, password) => {
@@ -91,9 +91,16 @@ const Login = () => {
             </div>
             <br />
             <div className={'inputContainer'}>
-                <input className={'inputButton'} type='button' onClick={onButtonClick} value={'log in'}/>
+                <input className={'inputButton'} type='button' onClick={onButtonClick} value={'Log in'}/>
             </div>
+            <br />
             <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
+            <br />
+            <div className={'inputContainer'}>
+                <Link to='/register'>
+                    <button className={'inputButton'}>Go to registration page</button>
+                </Link>
+            </div>
         </div>
     )
 }
