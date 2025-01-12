@@ -25,6 +25,44 @@ const Register = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const navigate = useNavigate();
+
+    const onButtonClick = async(e) => {
+        e.preventDefault();
+        setLoginError(''); 
+        setPasswordError('');
+        setErrorMessage('');
+
+        const errors = validateForm(login, password, repeat_password);
+        if (errors.login) 
+            setLoginError(errors.login);
+        if (errors.password) setPasswordError(errors.password);
+        if (Object.keys(errors).length > 0) return;
+
+        const requestData = {
+            login: login, 
+            password: password,
+        }; 
+        try {
+            const response = await fetch('http://localhost:8080/web4/register', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            }); 
+            const result = await response.json();
+            console.log(response);
+            console.log(result);
+            if (response.ok) {
+                localStorage.setItem("id", result.message); 
+                navigate('/main');
+            } else {
+                setErrorMessage(result.message);
+            }
+        } catch (error) {
+            setErrorMessage("Network error: " + error);
+        }
+    };
     return (
         <div className={'mainContainer'}>
             <div className={'titleContainer'}>
@@ -60,7 +98,7 @@ const Register = () => {
                 <label className="errorLabel">{passwordError}</label>
             </div>
             <div className={'inputContainer'}>
-                {/* <input  className={'inputButton'} type="button" onClick={onButtonClick} value={'Register'}/> */}
+                <input  className={'inputButton'} type="button" onClick={onButtonClick} value={'Register'}/>
             </div>
             <br />
             <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
