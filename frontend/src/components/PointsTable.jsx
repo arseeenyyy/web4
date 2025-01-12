@@ -20,7 +20,7 @@ const PointsTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {points.map((point, index) => (
+                    {/* {points.map((point, index) => (
                         <tr key={index}>
                             <td>{point.x}</td>
                             <td>{point.y}</td>
@@ -28,7 +28,15 @@ const PointsTable = () => {
                             <td>{point.executionTime}</td>
                             <td>{point.hitResult ? "Hit" : "Miss"}</td>
                         </tr>
-                    ))}
+                    ))} */}
+                    <tr>
+                        <td>1</td>                        
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+
+                    </tr>
                 </tbody>
             </table>
         </div>
