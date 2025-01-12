@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import Header from "./Header";
-
+import { AuthContext } from "../AuthContext";
 
 const validateForm = (login, password) => {
     const errors = {};
@@ -22,6 +22,7 @@ const Login = () => {
     const [loginError, setLoginError] = useState(''); 
     const [passwordError, setPasswordError] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const {loginUser} = useContext(AuthContext)
 
     const navigate = useNavigate();
     const onButtonClick = async(e) => {
@@ -55,7 +56,7 @@ const Login = () => {
             });
             const result = await response.json();
             if (response.ok) {
-                localStorage.setItem("id", result.message);
+                loginUser(result.message);
                 console.log(result.message);
                 navigate('/main');
             } else {

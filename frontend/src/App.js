@@ -3,21 +3,25 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/LoginPage';
 import Register from './components/RegisterPage';
 import MainPage from './components/Main';
+import PrivateRoute from './PrivateRoute';
+import { AuthContext } from './AuthContext';
+import AuthProvider from './AuthContext';
 
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(false); 
-  const [login, setLogin] = useState('');
-
+const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />}/>
-        <Route path="/main" element={<MainPage />} />
-      </Routes>
-    </Router>
-  );
-}
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
+          <Route path="/main" element={<PrivateRoute component={MainPage} />} />
+
+          <Route path="*" element={<Login />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+};
 export default App;
