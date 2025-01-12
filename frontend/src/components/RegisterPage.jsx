@@ -84,6 +84,7 @@ const Register = () => {
                 <br />
                 <div className={'inputContainer'}>
                     <input 
+                        type="password"
                         value={password}
                         placeholder="Enter your password here" 
                         onChange={(ev) => setPassword(ev.target.value)}
@@ -93,6 +94,7 @@ const Register = () => {
                 <br />
                 <div className={'inputContainer'}>
                     <input
+                        type="password"
                         value={repeat_password}
                         placeholder="Repeat your password here"
                         onChange={(ev) => setRepeat_password(ev.target.value)}

@@ -56,6 +56,7 @@ const Login = () => {
             const result = await response.json();
             if (response.ok) {
                 localStorage.setItem("id", result.message);
+                console.log(result.message);
                 navigate('/main');
             } else {
                 setErrorMessage(result.message);
@@ -85,7 +86,8 @@ const Login = () => {
                 </div>
                 <br />
                 <div className={'inputContainer'}>
-                    <input 
+                    <input
+                    type="password" 
                     value={password}
                     placeholder='Enter your password here'
                     onChange={(ev) => setPassword(ev.target.value)} 
