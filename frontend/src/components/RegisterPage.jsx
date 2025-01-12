@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Header from "./Header";
 
 const validateForm = (login, password, repeat_password) => {
     const errors = {};
@@ -64,49 +65,53 @@ const Register = () => {
         }
     };
     return (
-        <div className={'mainContainer'}>
-            <div className={'titleContainer'}>
-                <div>Registration</div>
-            </div>
-            <br />
-            <div className={'inputContainer'}>
-                <input  
-                    value={login}
-                    placeholder="Enter your login here"
-                    onChange={(ev) => setLogin(ev.target.value)}
-                    className={'inputBox'}
-                />
-                <label className='errorLabel'>{loginError}</label>
-            </div>
-            <br />
-            <div className={'inputContainer'}>
-                <input 
-                    value={password}
-                    placeholder="Enter your password here" 
-                    onChange={(ev) => setPassword(ev.target.value)}
-                    className={'inputBox'}
-                />
-            </div>
-            <br />
-            <div className={'inputContainer'}>
-                <input
-                    value={repeat_password}
-                    placeholder="Repeat your password here"
-                    onChange={(ev) => setRepeat_password(ev.target.value)}
-                    className={'inputBox'}
-                />
-                <label className="errorLabel">{passwordError}</label>
-            </div>
-            <div className={'inputContainer'}>
-                <input  className={'inputButton'} type="button" onClick={onButtonClick} value={'Register'}/>
-            </div>
-            <br />
-            <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
-            <br />
-            <div className={'inputContainer'}>
-                <Link to='/'>
-                    <button className={'inputButton'}>Go to login page</button>
-                </Link>
+        <div>
+            <Header />
+            <div className={'mainContainer'}>
+                <div className={'titleContainer'}>
+                    <div>Registration</div>
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input  
+                        value={login}
+                        placeholder="Enter your login here"
+                        onChange={(ev) => setLogin(ev.target.value)}
+                        className={'inputBox'}
+                    />
+                    <label className='errorLabel'>{loginError}</label>
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input 
+                        value={password}
+                        placeholder="Enter your password here" 
+                        onChange={(ev) => setPassword(ev.target.value)}
+                        className={'inputBox'}
+                    />
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input
+                        value={repeat_password}
+                        placeholder="Repeat your password here"
+                        onChange={(ev) => setRepeat_password(ev.target.value)}
+                        className={'inputBox'}
+                    />
+                    <label className="errorLabel">{passwordError}</label>
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input  className={'inputButton'} type="button" onClick={onButtonClick} value={'Register'}/>
+                </div>
+                <br />
+                <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
+                <br />
+                <div className={'inputContainer'}>
+                    <Link to='/'>
+                        <button className={'inputButton'}>Go to login page</button>
+                    </Link>
+                </div>
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
+import Header from "./Header";
 
 
 const validateForm = (login, password) => {
@@ -65,41 +66,46 @@ const Login = () => {
 
     };
     return (
-        <div className={'mainContainer'}>
-            <div className={'titleContainer'}>
-                <div>Login</div>
-            </div>
-            <br />
-            <div className={'inputContainer'}>
-                <input 
-                    value={login}
-                    placeholder="Enter your login here"
-                    onChange={(ev) => setLogin(ev.target.value)}
+        <div>
+            <Header />
+            <div className={'mainContainer'}>
+                <div className={'titleContainer'}>
+                    <div>Login</div>
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input 
+                        value={login}
+                        placeholder="Enter your login here"
+                        onChange={(ev) => setLogin(ev.target.value)}
+                        className={'inputBox'}
+                    />
+                    <br />
+                    <label className='errorLabel'>{loginError}</label>
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input 
+                    value={password}
+                    placeholder='Enter your password here'
+                    onChange={(ev) => setPassword(ev.target.value)} 
                     className={'inputBox'}
-                />
-                <label className='errorLabel'>{loginError}</label>
-            </div>
-            <br />
-            <div className={'inputContainer'}>
-                <input 
-                value={password}
-                placeholder='Enter your password here'
-                onChange={(ev) => setPassword(ev.target.value)} 
-                className={'inputBox'}
-                />
-                <label className='errorLabel'>{passwordError}</label>
-            </div>
-            <br />
-            <div className={'inputContainer'}>
-                <input className={'inputButton'} type='button' onClick={onButtonClick} value={'Log in'}/>
-            </div>
-            <br />
-            <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
-            <br />
-            <div className={'inputContainer'}>
-                <Link to='/register'>
-                    <button className={'inputButton'}>Go to registration page</button>
-                </Link>
+                    />
+                    <br />
+                    <label className='errorLabel'>{passwordError}</label>
+                </div>
+                <br />
+                <div className={'inputContainer'}>
+                    <input className={'inputButton'} type='button' onClick={onButtonClick} value={'Log in'}/>
+                </div>
+                <br />
+                <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
+                <br />
+                <div className={'inputContainer'}>
+                    <Link to='/register'>
+                        <button className={'inputButton'}>Go to registration page</button>
+                    </Link>
+                </div>
             </div>
         </div>
     )

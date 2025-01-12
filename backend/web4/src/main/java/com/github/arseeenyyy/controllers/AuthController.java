@@ -28,7 +28,7 @@ public class AuthController {
         if (user != null && user.getPassword().equals(request.getPassword())) {
             return ResponseEntity.ok(new MessageResponse(String.valueOf(user.getId())));
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("1"));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("no user with such login or password"));
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
