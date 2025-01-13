@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import Header from "./Header";
 import { AuthContext } from "../AuthContext";
@@ -25,6 +25,9 @@ const Login = () => {
     const {loginUser} = useContext(AuthContext)
 
     const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("id") != null) navigate("/main")
+    })
     const onButtonClick = async(e) => {
         e.preventDefault();
         setLoginError('');

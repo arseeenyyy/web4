@@ -9,18 +9,26 @@ const MainPage = () => {
     const [x, setX] = useState("");
     const [y, setY] = useState("");
     const [r, setR] = useState("");
-    const { user } = useContext(AuthContext);  
+    const { user } = useContext(AuthContext);
+    const [usr, setUsr] = useState(null);   
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user) {  
-            navigate("/login");
+        const id = localStorage.getItem("id"); 
+        if (id) {
+            setUsr(JSON.parse(id));  
+        } else {
+            navigate("/login");  
         }
-    }, [user, navigate]);
+    }, [navigate]);
 
     const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted values:", { x, y, r });
+    };
+    const handleLogout = () => {
+        localStorage.removeItem("id"); 
+        navigate("/login"); 
     };
 
     return (
@@ -31,13 +39,26 @@ const MainPage = () => {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="x">X:</label>
-                        <input
-                        type="number"
-                        id="x"
+                        {/* <input
+                            type="number"
+                            id="x"
+                            value={x}
+                            onChange={(e) => setX(e.target.value)}
+                            placeholed = ""
+                            required
+                        /> */}
+                    <select  id="x"
                         value={x}
-                        onChange={(e) => setX(e.target.value)}
+                        onChange={(ev) => setX(ev.target.value)}
                         required
-                        />
+                        >
+                        {[-5, -4, -3, -2, -1, 0, 1, 2, 3].map((value) => (
+                            <option key={value} value={value}>
+                            {value}
+                            </option>
+                        ))}
+                    </select>
+                    <label htmlFor="x">X:</label>
                     </div>
                     <div>
                         <label htmlFor="y">Y:</label>
@@ -70,6 +91,7 @@ const MainPage = () => {
                 <h2>Таблица точек</h2>
                 <PointsTable />
             </div>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     );
     };
