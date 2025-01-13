@@ -4,6 +4,7 @@ import Header from "./Header";
 import PointsTable from "./PointsTable";
 import graph from "../images/graph.svg";
 import { AuthContext } from "../AuthContext";
+import { useDispatch, useSelector } from 'react-redux';
 
 const MainPage = () => {
     const [x, setX] = useState("");
@@ -12,8 +13,9 @@ const MainPage = () => {
     const { user } = useContext(AuthContext);
     const [usr, setUsr] = useState(null);   
     const navigate = useNavigate();
-    const [points, setPoints] = useState([]);
-
+    // const [points, setPoints] = useState([]);
+    const dispatch = useDispatch();
+    const points = useSelector(state => state.points);
     useEffect(() => {
         const id = localStorage.getItem("id"); 
         if (id) {
@@ -45,7 +47,8 @@ const MainPage = () => {
             const result = await response.json();
             if (response.ok) {
                 console.log(result.points);
-                setPoints(result.points);
+                // setPoints(result.points);
+                dispatch({ type: 'SET_POINTS', points: result.points });
             }
 
         } catch (error) {
