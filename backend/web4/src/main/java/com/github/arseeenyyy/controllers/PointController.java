@@ -56,4 +56,15 @@ public class PointController {
                     .body(new PointsResponse("Error processing point: " + exception.getMessage()));
         }
     }
+    @CrossOrigin(origins = "http://localhost:3000") 
+    @PostMapping("/clear")
+    public ResponseEntity<PointsResponse> clear(@RequestBody PointRequest request) {
+        try {
+            service.removeAllPoints(request.getUserId()); 
+            return ResponseEntity.ok(new PointsResponse("All points have been cleared successfully."));
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new PointsResponse("Error clearing points: " + exception.getMessage()));
+        }
+    }
 }

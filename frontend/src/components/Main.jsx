@@ -10,21 +10,21 @@ const MainPage = () => {
     const [x, setX] = useState(-5);
     const [y, setY] = useState("");
     const [r, setR] = useState(1);
-    const [error, setError] = useState(""); // Состояние для ошибки
-    // const { user } = useContext(AuthContext);
-    // const [usr, setUsr] = useState(null);   
+    const [error, setError] = useState(""); 
+    const { user } = useContext(AuthContext);
+    const [usr, setUsr] = useState(null);   
     const navigate = useNavigate();
     // const [points, setPoints] = useState([]);
     const dispatch = useDispatch();
     const points = useSelector(state => state.points);
-    // useEffect(() => {
-    //     const id = localStorage.getItem("id"); 
-    //     if (id) {
-    //         setUsr(JSON.parse(id));  
-    //     } else {
-    //         navigate("/login");  
-    //     }
-    // }, [navigate]);
+    useEffect(() => {
+        const id = localStorage.getItem("id"); 
+        if (id) {
+            setUsr(JSON.parse(id));  
+        } else {
+            navigate("/login");  
+        }
+    }, [navigate]);
 
     const onButtonClick = async(e) => {
         e.preventDefault(); 
