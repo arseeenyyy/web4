@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
-import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -28,8 +27,6 @@ public class PointEntity implements Serializable {
     private boolean isHit; 
     @Column(name = "executionTime", nullable = false)
     private long executionTime;
-    @Column(name = "creationDate", nullable = false) 
-    private Date creationDate;
     
     public PointEntity() {
         super();
@@ -52,9 +49,6 @@ public class PointEntity implements Serializable {
     public void setExecutionTime(long executionTime) {
         this.executionTime = executionTime;
     }
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
     public long getId() {
         return id;
     }
@@ -76,9 +70,6 @@ public class PointEntity implements Serializable {
     public long getExecutionTime() {
         return executionTime;
     }
-    public Date getCreationDate() {
-        return creationDate;
-    }
     @Override 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,7 +78,7 @@ public class PointEntity implements Serializable {
     }
     @Override
     public int hashCode() {
-        return Objects.hash(id, user_id, x, y, r, isHit, creationDate, executionTime);
+        return Objects.hash(id, user_id, x, y, r, isHit, executionTime);
     }
     @Override
     public String toString() {
@@ -99,7 +90,6 @@ public class PointEntity implements Serializable {
                 "r = %d;" +
                 "hitResult = %b;" +
                 "executionTime = %d;" +
-                "creationDate = %t" +
-                "]", id, user_id, x, y, r, isHit, executionTime, creationDate);
+                "]", id, user_id, x, y, r, isHit, executionTime);
     }
 }
