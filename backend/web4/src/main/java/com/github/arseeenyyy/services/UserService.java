@@ -19,9 +19,6 @@ public class UserService {
 
     @Transactional
     public UserEntity registerUser(String login, String password) {
-        // if (userRepository.findByLogin(login) != null) {
-        //     return null;
-        // }
         UserEntity user = new UserEntity();
         user.setLogin(login);
         user.setPassword(password);
