@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "./Header";
-import kitty from '../images/kitty2.gif'
+import kitty from '../images/kitty2.gif';
 
 const validateForm = (login, password, repeat_password) => {
     const errors = {};
@@ -12,8 +12,8 @@ const validateForm = (login, password, repeat_password) => {
         errors.password = 'Please enter password';
     } else if (password.length < 5) {
         errors.password = 'Password must be 6 characters or longer';
-    } else if(password != repeat_password) {
-        errors.password = 'Passwords dont match';
+    } else if (password !== repeat_password) {
+        errors.password = 'Passwords don’t match';
     }
     return errors;
 };
@@ -30,23 +30,20 @@ const Register = () => {
 
     useEffect(() => {
         if (localStorage.getItem("id") != null) navigate("/main");
-    })
-    const onButtonClick = async(e) => {
+    }, [navigate]);
+
+    const onButtonClick = async (e) => {
         e.preventDefault();
         setLoginError(''); 
         setPasswordError('');
         setErrorMessage('');
 
         const errors = validateForm(login, password, repeat_password);
-        if (errors.login) 
-            setLoginError(errors.login);
+        if (errors.login) setLoginError(errors.login);
         if (errors.password) setPasswordError(errors.password);
         if (Object.keys(errors).length > 0) return;
 
-        const requestData = {
-            login: login, 
-            password: password,
-        }; 
+        const requestData = { login, password }; 
         try {
             const response = await fetch('http://localhost:8080/web4/register', {
                 method: 'POST', 
@@ -56,8 +53,6 @@ const Register = () => {
                 body: JSON.stringify(requestData),
             }); 
             const result = await response.json();
-            console.log(response);
-            console.log(result);
             if (response.ok) {
                 localStorage.setItem("id", result.message); 
                 navigate('/main');
@@ -68,60 +63,58 @@ const Register = () => {
             setErrorMessage("Network error: " + error);
         }
     };
+
     return (
-        <div>
+        <div className="registration-page">
             <Header />
-            <div className={'mainContainer'}>
-                <div className={'titleContainer'}>
-                    <div>Registration</div>
+            <div className="form-container">
+                <div className="title-container">
+                    <h2>Registration</h2>
                 </div>
-                <br />
-                <div className={'inputContainer'}>
+                <div className="input-container">
                     <input  
                         value={login}
                         placeholder="Enter your login here"
                         onChange={(ev) => setLogin(ev.target.value)}
-                        className={'inputBox'}
+                        className="input-box"
                     />
-                    <label className='errorLabel'>{loginError}</label>
+                    <label className="error-label">{loginError}</label>
                 </div>
-                <br />
-                <div className={'inputContainer'}>
+                <div className="input-container">
                     <input 
                         type="password"
                         value={password}
                         placeholder="Enter your password here" 
                         onChange={(ev) => setPassword(ev.target.value)}
-                        className={'inputBox'}
+                        className="input-box"
                     />
                 </div>
-                <br />
-                <div className={'inputContainer'}>
+                <div className="input-container">
                     <input
                         type="password"
                         value={repeat_password}
                         placeholder="Repeat your password here"
                         onChange={(ev) => setRepeat_password(ev.target.value)}
-                        className={'inputBox'}
+                        className="input-box"
                     />
-                    <label className="errorLabel">{passwordError}</label>
+                    <label className="error-label">{passwordError}</label>
                 </div>
-                <br />
-                <div className={'inputContainer'}>
-                    <input  className={'inputButton'} type="button" onClick={onButtonClick} value={'Register'}/>
+                <div className="button-container">
+                    <input 
+                        className="input-button" 
+                        type="button" 
+                        onClick={onButtonClick} 
+                        value="Register"
+                    />
                 </div>
-                <br />
-                <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
-                <br />
-                <div className={'inputContainer'}>
-                    <Link to='/'>
-                        <button className={'inputButton'}>Go to login page</button>
-                    </Link>
-                </div>
+                <label className="error-label">{errorMessage}</label>
+                <Link to="/">
+                    <button className="input-button">Go to login page</button>
+                </Link>
             </div>
+            <img src={kitty} alt="" />
         </div>
-    )
-}
-
+    );
+};
 
 export default Register;
