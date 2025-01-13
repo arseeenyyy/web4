@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-
-const PointsTable = () => {
-    const [points, setPoints] = useState('');
-
-    const handleNewData = (newData) => {
-        setPoints(newData);
-    };
+const PointsTable = ({ points }) => {
+    if (!points) return <div>No points available</div>; // Защита от undefined
 
     return (
         <div>
@@ -20,27 +14,24 @@ const PointsTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {points.map((point, index) => (
-                        <tr key={index}>
-                            <td>{point.x}</td>
-                            <td>{point.y}</td>
-                            <td>{point.r}</td>
-                            <td>{point.executionTime}</td>
-                            <td>{point.hitResult ? "Hit" : "Miss"}</td>
+                    {points.length === 0 ? (
+                        <tr>
+                            <td colSpan="5">No data to display</td>
                         </tr>
-                    ))} */}
-                    <tr>
-                        <td>1</td>                        
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-
-                    </tr>
+                    ) : (
+                        points.map((point, index) => (
+                            <tr key={index}>
+                                <td>{point.x}</td>
+                                <td>{point.y}</td>
+                                <td>{point.r}</td>
+                                <td>{point.executionTime}</td>
+                                <td>{point.isHit ? "Hit" : "Miss"}</td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
         </div>
     );
 };
-
 export default PointsTable;

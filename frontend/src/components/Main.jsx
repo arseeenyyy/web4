@@ -8,10 +8,11 @@ import { AuthContext } from "../AuthContext";
 const MainPage = () => {
     const [x, setX] = useState("");
     const [y, setY] = useState("");
-    const [r, setR] = useState("");
+    const [r, setR] = useState(1);
     const { user } = useContext(AuthContext);
     const [usr, setUsr] = useState(null);   
     const navigate = useNavigate();
+    const [points, setPoints] = useState([]);
 
     useEffect(() => {
         const id = localStorage.getItem("id"); 
@@ -22,10 +23,36 @@ const MainPage = () => {
         }
     }, [navigate]);
 
-    const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitted values:", { x, y, r });
-    };
+    const onButtonClick = async(e) => {
+        e.preventDefault(); 
+        
+        const requestData = {
+            userId: localStorage.getItem("id"),
+            x: x, 
+            y: y, 
+            r: r, 
+        };
+        console.log(requestData);
+        console.log(JSON.stringify(requestData))
+        try {
+            const response = await fetch('http://localhost:8080/web4/check', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                }, 
+                body: JSON.stringify(requestData),
+            }); 
+            const result = await response.json();
+            if (response.ok) {
+                console.log(result.points);
+                setPoints(result.points);
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
     const handleLogout = () => {
         localStorage.removeItem("id"); 
         navigate("/login"); 
@@ -35,30 +62,20 @@ const MainPage = () => {
         <div>
             <Header />
             <div>
-                <h2>Введите параметры:</h2>
-                <form onSubmit={handleSubmit}>
+                <h2>Enter Params</h2>
                     <div>
                         <label htmlFor="x">X:</label>
-                        {/* <input
-                            type="number"
-                            id="x"
+                        <select id="x"
                             value={x}
-                            onChange={(e) => setX(e.target.value)}
-                            placeholed = ""
+                            onChange={(ev) => setX(ev.target.value)}
                             required
-                        /> */}
-                    <select  id="x"
-                        value={x}
-                        onChange={(ev) => setX(ev.target.value)}
-                        required
-                        >
-                        {[-5, -4, -3, -2, -1, 0, 1, 2, 3].map((value) => (
-                            <option key={value} value={value}>
-                            {value}
-                            </option>
-                        ))}
-                    </select>
-                    <label htmlFor="x">X:</label>
+                            >
+                            {[-5, -4, -3, -2, -1, 0, 1, 2, 3].map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                     <div>
                         <label htmlFor="y">Y:</label>
@@ -70,26 +87,30 @@ const MainPage = () => {
                         required
                         />
                     </div>
+                    <br />
                     <div>
                         <label htmlFor="r">R:</label>
-                        <input
-                        type="number"
-                        id="r"
-                        value={r}
-                        onChange={(e) => setR(e.target.value)}
-                        required
-                        />
+                        <select id="r"
+                            value={r}
+                            onChange={(ev) => setR(ev.target.value)} 
+                            required
+                        >
+                            {[1, 2, 3, 4, 5].map((value) => (
+                                <option key={value} value={value}>
+                                    {value}
+                                </option>
+                            ))} 
+                        </select>
                     </div>
-                        <button type="submit">Отправить</button>
-                </form>
+                        <input type="button" onClick={onButtonClick} value={'Check'}/>
                 </div>
             <div>
-                <h2>График</h2>
+                <h2>Graph</h2>
                 <img src={graph} alt="Graph" />
-                </div>
-                <div>
-                <h2>Таблица точек</h2>
-                <PointsTable />
+            </div>
+            <div>
+                <h2>Table</h2>
+                <PointsTable points={points}/>
             </div>
             <button onClick={handleLogout}>Logout</button>
         </div>
