@@ -91,6 +91,45 @@ const MainPage = () => {
         svg.appendChild(circle);
     }
 
+    const onGraphClick = async (event) => {
+        const svg = document.querySelector("svg");
+        const rect = svg.getBoundingClientRect();
+    
+        const clickX = event.clientX - rect.left;
+        const clickY = event.clientY - rect.top;
+    
+        const scaleFactor = 150 / r;
+        const clickedX = (clickX - 200) / scaleFactor;
+        const clickedY = -(clickY - 200) / scaleFactor;
+    
+        const requestData = {
+            userId: localStorage.getItem("id"),
+            x: clickedX,
+            y: clickedY,
+            r: r,
+        };
+        clearPoints();
+        try {
+            const response = await fetch('http://localhost:8080/web4/check', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestData),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.statusText}`);
+            }
+    
+            const result = await response.json();
+            dispatch({ type: 'SET_POINTS', points: result.points });
+        } catch (error) {
+            console.error("Error while sending request:", error);
+        }
+    };
+    
+
     const handleLogout = () => {
         localStorage.removeItem("id"); 
         navigate("/login"); 
@@ -168,6 +207,7 @@ const MainPage = () => {
                         </select>
                     </div>
                     <input 
+                        id="check-button"
                         type="button" 
                         onClick={onButtonClick} 
                         value="Check"
@@ -184,7 +224,7 @@ const MainPage = () => {
 
                 <div className="graph-container">
                     <h2>Graph</h2>
-                    <svg width="400" height="400" viewBox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg" className="graph-svg">
+                    <svg width="400" height="400" viewBox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg" className="graph-svg" onClick={onGraphClick}>
                         <line x1="-200" y1="0" x2="200" y2="0" stroke="black"></line>
                         <line x1="0" y1="200" x2="0" y2="-200" stroke="black"></line>
 
