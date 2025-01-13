@@ -1,0 +1,161 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.main-page-container {
+    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #80d0c7, #13547a); 
+    color: black;
+    font-family: Arial, sans-serif;
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form-graph-container {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+}
+
+.input-form-container, .graph-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 45%;
+}
+
+.input-form-container h2, .graph-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: #007bff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.input-form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: #333;
+    text-align: center; /* Выравниваем подписи по центру */
+}
+
+.input-form-container select, .input-form-container input {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto; /* Центрируем поля ввода */
+    display: block;
+}
+
+.submit-button, .clear-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.submit-button:hover, .clear-button:hover {
+    background-color: #0056b3;
+}
+
+.graph-img {
+    width: 100%;
+    height: auto;
+}
+.error-message {
+    color: #d9534f;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.points-table-container {
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.logout-btn {
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-top: 5px; 
+    width: 180px;
+    align-self: flex-end; 
+}
+
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
