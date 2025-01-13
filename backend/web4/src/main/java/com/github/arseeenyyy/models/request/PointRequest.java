@@ -6,14 +6,6 @@ public class PointRequest {
     private double y; 
     private int r;
 
-    public PointRequest(long userId, double x, double y, int r) {
-        this.userId = userId; 
-        this.x = x; 
-        this.y = y; 
-        this.r = r;
-    }
-
-    // Getters
     public long getUserId() {
         return userId;
     }
@@ -30,7 +22,6 @@ public class PointRequest {
         return r;
     }
 
-    // Setters
     public void setUserId(long userId) {
         this.userId = userId;
     }

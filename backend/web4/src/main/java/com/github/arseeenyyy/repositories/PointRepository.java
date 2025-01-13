@@ -1,12 +1,16 @@
 package com.github.arseeenyyy.repositories;
 
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import com.github.arseeenyyy.models.entities.PointEntity;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
+@Repository
 public class PointRepository {
     @PersistenceContext
     private EntityManager entityManager;

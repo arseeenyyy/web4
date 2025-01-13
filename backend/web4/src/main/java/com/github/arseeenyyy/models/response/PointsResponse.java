@@ -5,11 +5,32 @@ import java.util.List;
 public class PointsResponse {
     private String message;
     private List<PointResponse> points;
+    public PointsResponse(String message, List<PointResponse> points) {
+        this.message = message;
+        this.points = points;
+    }
+    public PointsResponse(List<PointResponse> points) {
+        this.points = points;
+    }
+    public PointsResponse(String message) {
+        this.message = message;
+    }
 
+    public String getMessage() {
+        return message;
+    }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
+    public List<PointResponse> getPoints() {
+        return points;
+    }
 
-
+    public void setPoints(List<PointResponse> points) {
+        this.points = points;
+    }
 
     public static class PointResponse {
         private double x; 
