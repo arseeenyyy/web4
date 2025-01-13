@@ -28,9 +28,13 @@ public class PointRepository {
     public void update(PointEntity pointEntity) {
         entityManager.merge(pointEntity);
     }
-    public void removeAllPoints() {
-        entityManager.createQuery("DELETE FROM PointEntity").executeUpdate();
+    public void removeAllPoints(long userId) {
+        entityManager.createQuery(
+                "DELETE FROM PointEntity p WHERE p.user_id = :userId")
+                .setParameter("userId", userId)
+                .executeUpdate();
     }
+    
     public List<PointEntity> getAllPointsByUserId(long userId) {
         return entityManager.createQuery(
                 "SELECT p FROM PointEntity p WHERE p.user_id = :userId", PointEntity.class)
