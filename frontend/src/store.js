@@ -16,7 +16,6 @@ const rootReducer = combineReducers({
     points: pointsReducer, 
 });
 
-// Настройка persist
 const persistConfig = {
     key: 'root',
     storage,

@@ -31,13 +31,19 @@ h2 {
     max-width: 1200px;
     margin-bottom: 40px;
 }
+.graph-container {
+    text-align: center;
+    flex: 1;
+}
 
 .input-form-container, .graph-container {
     background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    padding: 10px;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     width: 45%;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 .input-form-container h2, .graph-container h2 {
@@ -88,10 +94,6 @@ h2 {
     background-color: #0056b3;
 }
 
-.graph-img {
-    width: 100%;
-    height: auto;
-}
 .error-message {
     color: #d9534f;
     background-color: #f2dede;

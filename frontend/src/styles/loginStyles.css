@@ -23,7 +23,7 @@ html, body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
     text-align: center;
     margin-top: 20px; 
-    position: relative; /* Для точного позиционирования ошибки */
+    position: relative; 
 }
 
 .input-container {
@@ -44,7 +44,7 @@ html, body {
     font-size: 12px;
     margin-top: 5px;
     position: absolute;
-    bottom: 0px; /* Позиционируем ошибку внизу */
+    bottom: 0px; 
     left: 0;
     width: 100%;
 }

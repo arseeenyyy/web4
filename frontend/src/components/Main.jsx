@@ -26,6 +26,14 @@ const MainPage = () => {
         }
     }, [navigate]);
 
+    useEffect(() => {
+        if (points.length > 0) {
+            points.forEach(({ x, y, r, isHit }) => {
+                drawPoint(x, y, r, isHit);
+            });
+        }
+    }, [points]);
+
     const onButtonClick = async(e) => {
         e.preventDefault(); 
         if (y < -5 || y > 5) {
@@ -34,6 +42,7 @@ const MainPage = () => {
         } else {
             setError("");
         }
+        clearPoints();
         const requestData = {
             userId: localStorage.getItem("id"),
             x: x, 
@@ -62,12 +71,33 @@ const MainPage = () => {
         }
 
     }
+    const clearPoints = () => {
+        const svg = document.querySelector('svg');
+        const circles = svg.querySelectorAll('circle'); 
+        circles.forEach(circle => circle.remove());
+    }
+    const drawPoint = (x, y, r, isHit) => {
+        const svg = document.querySelector("svg"); 
+        const scaleFactor = 150 / r;
+        const scaledX = x * scaleFactor; 
+        const scaledY = -y * scaleFactor;
+    
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute("cx", scaledX); 
+        circle.setAttribute("cy", scaledY);
+        circle.setAttribute("r", 5); 
+        circle.setAttribute("fill", isHit ? "green" : "red");
+    
+        svg.appendChild(circle);
+    }
+
     const handleLogout = () => {
         localStorage.removeItem("id"); 
         navigate("/login"); 
     };
     const handleClear = async(e) => {
         e.preventDefault();
+        clearPoints();
         const requestData = {
             userId: localStorage.getItem("id"),
         }; 
@@ -154,7 +184,41 @@ const MainPage = () => {
 
                 <div className="graph-container">
                     <h2>Graph</h2>
-                    <img src={graph} alt="Graph" className="graph-img" />
+                    <svg width="400" height="400" viewBox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg" className="graph-svg">
+                        <line x1="-200" y1="0" x2="200" y2="0" stroke="black"></line>
+                        <line x1="0" y1="200" x2="0" y2="-200" stroke="black"></line>
+
+                        <line x1="-150" y1="-5" x2="-150" y2="5" stroke="black"></line>
+                        <text x="-160" y="20" font-size="20">-R</text>
+
+                        <line x1="-75" y1="-5" x2="-75" y2="5" stroke="black"></line>
+                        <text x="-85" y="20" font-size="20">-R/2</text>
+
+                        <line x1="150" y1="-5" x2="150" y2="5" stroke="black"></line>
+                        <text x="140" y="20" font-size="20">R</text>
+
+                        <line x1="75" y1="-5" x2="75" y2="5" stroke="black"></line>
+                        <text x="65" y="20" font-size="20">R/2</text>
+
+                        <line x1="-5" y1="150" x2="5" y2="150" stroke="black"></line>
+                        <text x="10" y="155" font-size="20">R</text>
+
+                        <line x1="-5" y1="75" x2="5" y2="75" stroke="black"></line>
+                        <text x="10" y="80" font-size="20">R/2</text>
+
+                        <line x1="-5" y1="-150" x2="5" y2="-150" stroke="black"></line>
+                        <text x="10" y="-140" font-size="20">-R</text>
+
+                        <line x1="-5" y1="-75" x2="5" y2="-75" stroke="black"></line>
+                        <text x="10" y="-65" font-size="20">-R/2</text>
+                        <polygon points="0,0 0, -75 -75,0" fill-opacity="0.4" stroke="navy" fill="red"></polygon>
+                        <path d="M 0 0 H 150 A 150 150 0 0 0 0 -150 v 0" stroke="navy" fill="red" fill-opacity="0.4"></path>
+                        <rect x="-75" y="0" width="75" height="150" fill-opacity="0.4" stroke="navy" fill="red"></rect> 
+                        <polygon points="200,0 190,5 190,-5" fill="black"></polygon>
+                        <polygon points="0,-200 -5,-190 5,-190" fill="black"></polygon> 
+                        <text x="180" y="20" font-size="20">R</text>
+                        <text x="-40" y="-180" font-size="20">R</text>
+                    </svg>
                 </div>
             </div>
 
