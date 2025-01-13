@@ -1,10 +1,6 @@
 package com.github.arseeenyyy.repositories;
 
 import java.util.List;
-
-import org.springframework.data.geo.Point;
-import org.springframework.data.projection.EntityProjectionIntrospector;
-
 import com.github.arseeenyyy.models.entities.PointEntity;
 
 import jakarta.persistence.EntityManager;

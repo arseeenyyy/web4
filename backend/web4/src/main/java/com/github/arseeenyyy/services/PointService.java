@@ -44,4 +44,9 @@ public class PointService {
         pointRepository.removeAllPoints(userId);
     } 
 
+    @Transactional
+    public boolean hasRChanged(long userId, int newR) {
+        return pointRepository.hasRChanged(userId, newR);
+    }
+
 }
