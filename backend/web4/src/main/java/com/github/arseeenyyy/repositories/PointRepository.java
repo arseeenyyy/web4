@@ -41,4 +41,16 @@ public class PointRepository {
                 .setParameter("userId", userId)
                 .getResultList();
     }
+    public boolean hasRChanged(long userId, int newR) {
+        TypedQuery<Integer> query = entityManager.createQuery(
+            "SELECT p.r FROM PointEntity p WHERE p.user_id = :userId ORDER BY p.id ASC", Integer.class)
+            .setParameter("userId", userId)
+            .setMaxResults(1);
+        try {
+            Integer existingR = query.getSingleResult();
+            return existingR != newR;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
 }
