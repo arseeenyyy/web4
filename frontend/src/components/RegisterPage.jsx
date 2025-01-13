@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "./Header";
+import kitty from '../images/kitty2.gif'
 
 const validateForm = (login, password, repeat_password) => {
     const errors = {};

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import Header from "./Header";
 import { AuthContext } from "../AuthContext";
+import kitty from '../images/kitty2.gif'
 
 const validateForm = (login, password) => {
     const errors = {};
@@ -71,49 +72,42 @@ const Login = () => {
 
     };
     return (
-        <div>
-            <Header />
-            <div className={'mainContainer'}>
-                <div className={'titleContainer'}>
-                    <div>Login</div>
-                </div>
-                <br />
-                <div className={'inputContainer'}>
-                    <input 
-                        value={login}
-                        placeholder="Enter your login here"
-                        onChange={(ev) => setLogin(ev.target.value)}
-                        className={'inputBox'}
-                    />
-                    <br />
-                    <label className='errorLabel'>{loginError}</label>
-                </div>
-                <br />
-                <div className={'inputContainer'}>
-                    <input
+        <div className="registration-page">
+        <Header />
+        <div className="form-container">
+            <div className="title-container">
+                <h2>Login</h2>
+            </div>
+            <div className="input-container">
+                <input 
+                    value={login}
+                    placeholder="Enter your login here"
+                    onChange={(ev) => setLogin(ev.target.value)}
+                    className="input-box"
+                />
+                <label className="error-label">{loginError}</label>
+            </div>
+            <div className="input-container">
+                <input
                     type="password" 
                     value={password}
-                    placeholder='Enter your password here'
+                    placeholder="Enter your password here"
                     onChange={(ev) => setPassword(ev.target.value)} 
-                    className={'inputBox'}
-                    />
-                    <br />
-                    <label className='errorLabel'>{passwordError}</label>
-                </div>
-                <br />
-                <div className={'inputContainer'}>
-                    <input className={'inputButton'} type='button' onClick={onButtonClick} value={'Log in'}/>
-                </div>
-                <br />
-                <div className={'inputContainer'}><label className='errorLabel'>{errorMessage}</label></div>
-                <br />
-                <div className={'inputContainer'}>
-                    <Link to='/register'>
-                        <button className={'inputButton'}>Go to registration page</button>
-                    </Link>
-                </div>
+                    className="input-box"
+                />
             </div>
+            <div className="button-container">
+                <input className="input-button" type="button" onClick={onButtonClick} value="Log in" />
+            </div>
+            <label className="error-label">{errorMessage}</label>
+            <Link to="/register">
+                <button className="input-button">Go to registration page</button>
+            </Link>
+            <br />
+            <label className="error-label">{passwordError}</label>
         </div>
+        <img src={kitty} alt="" />
+    </div>    
     )
 }
 

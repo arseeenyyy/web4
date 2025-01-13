@@ -1,0 +1,43 @@
+.main_header {
+    width: 100%;
+    background: rgba(34, 45, 55, 0.7); 
+    text-align: center;
+    border-radius: 10px;
+    color: #fff;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    padding: 10px 0;
+}
+
+.main_header h1 {
+    font-size: 24px; 
+    font-weight: bold;
+    color: #ffffff; /* Белый цвет для контраста */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень для улучшения читаемости */
+}
+
+.main_header h2 {
+    font-size: 16px;
+    color: #ffffff; /* Белый цвет для контраста */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень для улучшения читаемости */
+}
+
+/* color: #b2ebf2;  */
+
+#credit {
+    text-align: center;
+    margin-top: 5px;
+}
+#credit a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень для улучшения читаемости */
+}
+#credit a:hover {
+    color: #b2ebf2;
+    text-decoration: underline; 
+    font-size: 1.1em;
+} 

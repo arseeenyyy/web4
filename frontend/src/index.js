@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './store';
+import './styles/loginStyles.css'
+import './styles/headerStyles.css'
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(

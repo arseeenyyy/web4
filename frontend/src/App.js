@@ -7,7 +7,6 @@ import PrivateRoute from './PrivateRoute';
 import { AuthContext } from './AuthContext';
 import AuthProvider from './AuthContext';
 
-
 const App = () => {
   return (
     <AuthProvider>
