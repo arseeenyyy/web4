@@ -5,14 +5,19 @@ import { AuthContext } from "../AuthContext";
 import kitty from '../images/kitty2.gif'
 
 const validateForm = (login, password) => {
+    const alphanumericRegex = /^[a-zA-Z0-9]+$/;
     const errors = {};
     if (!login) {
         errors.login = 'Please enter login';
+    } else if (!alphanumericRegex.test(login)) {
+        errors.login = 'Login can contain only letters and numbers';
     }
     if (!password) {
         errors.password = 'Please enter password';
     } else if (password.length < 5) {
         errors.password = 'Password must be 6 characters or longer';
+    } else if (!alphanumericRegex.test(password)) {
+        errors.password = 'Password can contain only letters and numbers';
     }
     return errors;
 };
@@ -27,8 +32,11 @@ const Login = () => {
 
     const navigate = useNavigate();
     useEffect(() => {
-        if (localStorage.getItem("id") != null) navigate("/main")
-    })
+        if (localStorage.getItem("id") !== null) {
+            navigate("/main");
+        }
+    }, []); 
+    
     const onButtonClick = async(e) => {
         e.preventDefault();
         setLoginError('');

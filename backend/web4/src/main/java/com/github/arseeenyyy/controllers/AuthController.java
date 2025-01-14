@@ -26,7 +26,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<MessageResponse> loginUser(@RequestBody UserRequest request) {
         UserEntity user = service.getUser(request.getLogin());
-        if (user != null && user.getPassword().equals(request.getPassword())) {
+        if (user != null && service.checkPassword(request.getPassword(), user.getPassword())) {
             return ResponseEntity.ok(new MessageResponse(String.valueOf(user.getId())));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse("no user with such login or password"));

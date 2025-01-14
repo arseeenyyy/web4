@@ -5,8 +5,11 @@ import kitty from '../images/kitty2.gif';
 
 const validateForm = (login, password, repeat_password) => {
     const errors = {};
+    const alphanumericRegex = /^[a-zA-Z0-9]+$/;
     if (!login) {
         errors.login = 'Please enter login';
+    } else if (!alphanumericRegex.test(login)) {
+        errors.login = 'Login can contain only letters and numbers';
     }
     if (!password) {
         errors.password = 'Please enter password';
@@ -14,6 +17,8 @@ const validateForm = (login, password, repeat_password) => {
         errors.password = 'Password must be 6 characters or longer';
     } else if (password !== repeat_password) {
         errors.password = 'Passwords don’t match';
+    } else if (!alphanumericRegex.test(password)) {
+        errors.password = 'Password can contain only letters and numbers';
     }
     return errors;
 };
@@ -27,11 +32,11 @@ const Register = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const navigate = useNavigate();
-
     useEffect(() => {
-        if (localStorage.getItem("id") != null) navigate("/main");
-    }, [navigate]);
-
+        if (localStorage.getItem("id") !== null) {
+            navigate("/main");
+        }
+    }, []); 
     const onButtonClick = async (e) => {
         e.preventDefault();
         setLoginError(''); 
