@@ -31,11 +31,11 @@ const Login = () => {
     const {loginUser} = useContext(AuthContext)
 
     const navigate = useNavigate();
-    useEffect(() => {
-        if (localStorage.getItem("id") !== null) {
-            navigate("/main");
-        }
-    }, []); 
+    // useEffect(() => {
+    //     if (localStorage.getItem("id") !== null) {
+    //         navigate("/main");
+    //     }
+    // }, []); 
     
     const onButtonClick = async(e) => {
         e.preventDefault();

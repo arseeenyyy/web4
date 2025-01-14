@@ -3,12 +3,15 @@ package com.github.arseeenyyy.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.geo.Point;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.arseeenyyy.models.entities.PointEntity;
@@ -67,4 +70,20 @@ public class PointController {
                     .body(new PointsResponse("Error clearing points: " + exception.getMessage()));
         }
     }
+    @CrossOrigin(origins = "http://localhost:3000") 
+    @GetMapping("/points")
+    public ResponseEntity<PointsResponse> getPoints(@RequestParam(name = "userId") Long userId) {
+        List<PointEntity> points = service.getAllPointsByUserId(userId); 
+        List<PointsResponse.PointResponse> responsePoints = points.stream()
+        .map(p -> new PointsResponse.PointResponse(
+            p.getX(),
+            p.getY(),
+            p.getR(),
+            p.getExecutionTime(),
+            p.getIsHit()))
+        .toList();
+
+    return ResponseEntity.ok(new PointsResponse(responsePoints));
+    }
+
 }

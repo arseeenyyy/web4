@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import PointsTable from "./PointsTable";
-import graph from "../images/graph.svg";
 import { AuthContext } from "../AuthContext";
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,13 +17,10 @@ const MainPage = () => {
     const dispatch = useDispatch();
     const points = useSelector(state => state.points);
     useEffect(() => {
-        const id = localStorage.getItem("id"); 
-        if (id) {
-            setUsr(JSON.parse(id));  
-        } else {
-            navigate("/login");  
+        if (!user) {  
+            navigate("/login");
         }
-    }, [navigate]);
+    }, [user, navigate]);
 
     useEffect(() => {
         if (points.length > 0) {
@@ -33,7 +29,33 @@ const MainPage = () => {
             });
         }
     }, [points]);
-
+    useEffect(() => {
+        const fetchPoints = async () => {
+            if (user) {
+                try {
+                    const response = await fetch(`http://localhost:8080/web4/points?userId=${localStorage.getItem("id")}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+                    if (response.ok) {
+                        const result = await response.json();
+                        dispatch({ type: 'SET_POINTS', points: result.points });
+                    } else {
+                        console.error("Failed to fetch points:", response.statusText);
+                    }
+                } catch (error) {
+                    console.error("Error fetching points:", error);
+                }
+            } else {
+                dispatch({ type: 'SET_POINTS', points: [] }); 
+            }
+        };
+    
+        fetchPoints();
+    }, [user, dispatch]);
+    
     const onButtonClick = async(e) => {
         e.preventDefault(); 
         if (y < -5 || y > 5) {

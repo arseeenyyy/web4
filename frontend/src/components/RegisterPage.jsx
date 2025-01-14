@@ -32,11 +32,11 @@ const Register = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const navigate = useNavigate();
-    useEffect(() => {
-        if (localStorage.getItem("id") !== null) {
-            navigate("/main");
-        }
-    }, []); 
+    // useEffect(() => {
+    //     if (localStorage.getItem("id") !== null) {
+    //         navigate("/main");
+    //     }
+    // }, []); 
     const onButtonClick = async (e) => {
         e.preventDefault();
         setLoginError(''); 
