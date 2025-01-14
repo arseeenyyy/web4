@@ -13,17 +13,15 @@
 .main_header h1 {
     font-size: 24px; 
     font-weight: bold;
-    color: #ffffff; /* Белый цвет для контраста */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень для улучшения читаемости */
+    color: #ffffff; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 .main_header h2 {
     font-size: 16px;
-    color: #ffffff; /* Белый цвет для контраста */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень для улучшения читаемости */
+    color: #ffffff; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
 }
 
-/* color: #b2ebf2;  */
 
 #credit {
     text-align: center;
@@ -34,10 +32,45 @@
     color: white;
     font-weight: bold;
     transition: all 0.3s ease;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень для улучшения читаемости */
-}
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+}    
 #credit a:hover {
     color: #b2ebf2;
     text-decoration: underline; 
     font-size: 1.1em;
 } 
+@media (max-width: 1062px) and (min-width: 751px) {
+    .main_header {
+        padding: 8px 0; 
+    }
+
+    .main_header h1 {
+        font-size: 20px; 
+    }
+
+    .main_header h2 {
+        font-size: 14px; 
+    }
+}
+
+@media (max-width: 750px) {
+    .main_header {
+        padding: 5px 0; 
+    }
+
+    .main_header h1 {
+        font-size: 18px; 
+    }
+
+    .main_header h2 {
+        font-size: 12px; 
+    }
+
+    #credit {
+        font-size: 12px; 
+    }
+
+    #credit a {
+        font-size: 1em; 
+    }
+}

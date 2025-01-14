@@ -69,3 +69,44 @@ html, body {
 .input-container:last-child {
     margin-bottom: 30px; 
 }
+img {
+    max-width: 30%;
+    height: auto;
+}
+@media (max-width: 1062px) and (min-width: 751px) {
+    .registration-page {
+        padding-top: 200px; 
+    }
+
+    .form-container {
+        width: 350px; 
+        padding: 25px; 
+    }
+
+    .input-button {
+        width: 50%; 
+    }
+}
+
+@media (max-width: 750px) {
+    .registration-page {
+        padding-top: 150px; 
+    }
+
+    .form-container {
+        width: 90%; 
+        padding: 20px;
+    }
+
+    .input-button {
+        width: 60%; 
+    }
+
+    .input-box {
+        font-size: 14px; 
+    }
+
+    .error-label {
+        font-size: 10px; 
+    }
+}

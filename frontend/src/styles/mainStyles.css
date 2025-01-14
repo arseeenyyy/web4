@@ -160,3 +160,61 @@ th {
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+@media (max-width: 1062px) and (min-width: 751px) {
+    .main-page-container {
+        padding-top: 120px; 
+    }
+
+    .form-graph-container {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .input-form-container, .graph-container {
+        width: 80%; 
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .logout-btn {
+        width: 150px; 
+    }
+}
+
+@media (max-width: 750px) {
+    .main-page-container {
+        padding-top: 100px;
+    }
+
+    .form-graph-container {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .input-form-container, .graph-container {
+        width: 90%; 
+        margin: 0;
+        margin-bottom: 15px;
+    }
+
+    .input-form-container label, .input-form-container select, .input-form-container input {
+        font-size: 14px; 
+    }
+
+    .submit-button, .clear-button {
+        width: 90%; 
+    }
+
+    .logout-btn {
+        width: 140px; 
+    }
+
+    table {
+        font-size: 12px; 
+    }
+
+    th, td {
+        padding: 8px; 
+    }
+}
